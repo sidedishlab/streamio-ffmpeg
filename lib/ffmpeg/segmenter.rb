@@ -10,7 +10,7 @@ module FFMPEG
       attr_accessor :timeout
     end
 
-    def initialize(input, output_dir, options = SegmentOptions.new)
+    def initialize(input, output_playlist, output_filename, options = SegmentOptions.new)
 
       if input.is_a?(FFMPEG::Movie)
         @movie = input
@@ -25,7 +25,7 @@ module FFMPEG
         raise ArgumentError, "Unknown options format '#{options.class}', should be either EncodingOptions, Hash or Array."
       end
 
-      @command = [FFMPEG.ffmpeg_binary, '-i', @input, '-f segment', "-segment_list #{output_dir.to_s}playlist.m3u8", *@raw_options.to_a, "#{output_dir.to_s}stream_%d.ts"]
+      @command = [FFMPEG.ffmpeg_binary, '-i', @input, '-f segment', "-segment_list #{output_playlist.to_s}", *@raw_options.to_a, output_filename.to_s]
     end
 
     def run(&block)

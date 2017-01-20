@@ -205,8 +205,8 @@ module FFMPEG
       Transcoder.new(self, output_file, options.merge(screenshot: true), transcoder_options).run &block
     end
 
-    def segment(output_dir, options = SegmentOptions.new, &block)
-      Segmenter.new(self, output_dir, options).run &block
+    def segment(output_playlist, output_filename, options = SegmentOptions.new, &block)
+      Segmenter.new(self, output_playlist, output_filename, options).run &block
     end
 
     protected
