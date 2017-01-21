@@ -6,10 +6,22 @@ Streamio FFMPEG
 you can get the FFMPEG from 
 [here](https://github.com/FFmpeg/FFmpeg)
 
-### Segment for Http Live Streaming(HLS)
+## Installation (Gemfile)
+
+```bash
+gem 'streamio-ffmpeg', github: 'sidedishlab/streamio-ffmpeg'
+```
+
+## Segment for Http Live Streaming(HLS)
 
 First argument is the output playlist file path.
 Second argument is the output file path.
+
+initialize
+
+```ruby
+movie = FFMPEG::Movie.new("path/to/movie.mp4")
+```
 
 ```ruby
 movie.segment("tmp/playlists/playlist.m3u8", "tmp/streams/stream_%d.ts")
