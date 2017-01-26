@@ -205,8 +205,12 @@ module FFMPEG
       Transcoder.new(self, output_file, options.merge(screenshot: true), transcoder_options).run &block
     end
 
-    def segment(output_playlist, output_filename, options = SegmentOptions.new, &block)
-      Segmenter.new(self, output_playlist, output_filename, options).run &block
+    def segment(output_playlist, output_filename, segmenter_options = SegmentOptions.new, &block)
+      Segmenter.new(self, output_playlist, output_filename, segmenter_options).run &block
+    end
+
+    def animate(output_file, options = EncodingOptions.new, animate_options = {}, palette_options = {}, &block)
+      Animator.new(self, output_file, options, animate_options, palette_options).run &block
     end
 
     protected

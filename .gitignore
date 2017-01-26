@@ -25,4 +25,5 @@ pkg
 ## PROJECT::SPECIFIC
 script/*
 tmp/*
+console.rb
 Gemfile.lock

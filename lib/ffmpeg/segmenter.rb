@@ -10,19 +10,19 @@ module FFMPEG
       attr_accessor :timeout
     end
 
-    def initialize(input, output_playlist, output_filename, options = SegmentOptions.new)
+    def initialize(input, output_playlist, output_filename, segmenter_options = SegmentOptions.new)
 
       if input.is_a?(FFMPEG::Movie)
         @movie = input
         @input = input.path
       end
 
-      if options.is_a?(Array) || options.is_a?(EncodingOptions)
-        @raw_options = options
-      elsif options.is_a?(Hash)
-        @raw_options = SegmentOptions.new(options)
+      if segmenter_options.is_a?(Array) || segmenter_options.is_a?(SegmentOptions)
+        @raw_options = segmenter_options
+      elsif segmenter_options.is_a?(Hash)
+        @raw_options = SegmentOptions.new(segmenter_options)
       else
-        raise ArgumentError, "Unknown options format '#{options.class}', should be either EncodingOptions, Hash or Array."
+        raise ArgumentError, "Unknown segmenter_options format '#{segmenter_options.class}', should be either SegmentOptions, Hash or Array."
       end
 
       @command = [FFMPEG.ffmpeg_binary, '-i', @input, '-f segment', "-segment_list #{output_playlist.to_s}", *@raw_options.to_a, output_filename.to_s]
