@@ -12,6 +12,7 @@ require 'ffmpeg/encoding_options'
 require 'ffmpeg/segmenter'
 require 'ffmpeg/segment_options'
 require 'ffmpeg/animator'
+require 'ffmpeg/animator2'
 
 module FFMPEG
   # FFMPEG logs information about its progress when it's transcoding.

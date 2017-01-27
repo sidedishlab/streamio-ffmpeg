@@ -43,11 +43,13 @@ movie.animate("path/to/movie.gif", options, animate_options)
 use palette
 
 ```ruby
-palette_options = {
-  fps: 10,
-}
+movie.animate(output, options, animate_options, true)
+```
 
-movie.animate(output, options, animate_options, palette_options)
+if defined rmagick then make high quality animation.
+
+```ruby
+movie.animate2(output, options, animate_options, true)
 ```
 
 

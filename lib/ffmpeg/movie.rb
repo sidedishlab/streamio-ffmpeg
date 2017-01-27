@@ -209,8 +209,12 @@ module FFMPEG
       Segmenter.new(self, output_playlist, output_filename, segmenter_options).run &block
     end
 
-    def animate(output_file, options = EncodingOptions.new, animate_options = {}, palette_options = {}, &block)
-      Animator.new(self, output_file, options, animate_options, palette_options).run &block
+    def animate(output_file, options = EncodingOptions.new, animate_options = {}, palette_use = false, &block)
+      Animator.new(self, output_file, options, animate_options, palette_use).run &block
+    end
+
+    def animate2(output_file, options = EncodingOptions.new, animate_options = {}, &block)
+      Animator2.new(self, output_file, options, animate_options).run &block
     end
 
     protected
