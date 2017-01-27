@@ -18,6 +18,8 @@ initialize
 
 ```ruby
 movie = FFMPEG::Movie.new("path/to/movie.mp4")
+or
+movie = FFMPEG::Movie.new("http://domain/path/to/movie.mp4")
 ```
 
 options for example
@@ -58,6 +60,8 @@ initialize
 
 ```ruby
 movie = FFMPEG::Movie.new("path/to/movie.mp4")
+or
+movie = FFMPEG::Movie.new("http://domain/path/to/movie.mp4")
 ```
 
 options for example

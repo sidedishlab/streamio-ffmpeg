@@ -17,7 +17,7 @@ module FFMPEG
       if @paletteuse
         # ffmpeg -ss 1556 -t 5 -vf palettegen,fps=10,scale=480:-1:flags=lanczos -i ./123016_003-caribpr-1080p.mp4 -y ./nak846_1.png
 
-        palette = chain(File.dirname(@input), File.basename(@input).gsub(File.extname(@input), '')) + '.png'
+        palette = File.join(File.dirname(@input), File.basename(@input).gsub(File.extname(@input), '')) + '.png'
         iopts = @palette_options.collect {|k, v| "#{k}=#{v}"}.join(',')
 
         @command = (base_command + ['-vf', 'palettegen,' + iopts, '-y', palette]).join(' ')
@@ -34,11 +34,5 @@ module FFMPEG
       transcode_movie(&block)
       File.unlink palette if @paletteuse
     end
-
-    private
-
-      def chain(*array)
-        array.join('/')
-      end
   end
 end
