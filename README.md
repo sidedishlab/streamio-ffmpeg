@@ -49,7 +49,7 @@ movie.animate(output, options, animate_options, true)
 if defined rmagick then make high quality animation.
 
 ```ruby
-movie.animate2(output, options, animate_options, true)
+movie.animate2(output, options, animate_options)
 ```
 
 

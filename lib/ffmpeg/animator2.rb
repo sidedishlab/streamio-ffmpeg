@@ -1,5 +1,5 @@
 require 'open3'
-require 'rmagick' if defined?(Rails)
+require 'rmagick' if defined?(Magick)
 
 module FFMPEG
   class Animator2 < FFMPEG::Transcoder
