@@ -1,5 +1,5 @@
 require 'open3'
-require 'rmagick'
+require 'rmagick' if defined?(Magick)
 
 module FFMPEG
   class Animator2 < FFMPEG::Transcoder
@@ -23,8 +23,10 @@ module FFMPEG
         output = Magick::ImageList.new
         Dir.glob(File.join(stream_dir, '*')).each do |image|
           # output.push Magick::Image.read(image).first
-          output.concat ImageList.new(image)
+          output.concat Magick::ImageList.new(image)
         end
+
+        binding.pry
 
         output.delay = (20 - transcoder_options[:fps]).abs if transcoder_options && transcoder_options[:fps]
         output.write @output_file
