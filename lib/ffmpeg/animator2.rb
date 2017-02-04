@@ -21,7 +21,7 @@ module FFMPEG
 
         # convert *.png アニメ.gif
         output = Magick::ImageList.new
-        Dir.glob(File.join(stream_dir, '*')).each do |image|
+        Dir.glob(File.join(stream_dir, '*')).sort.each do |image|
           # output.push Magick::Image.read(image).first
           output.concat Magick::ImageList.new(image)
         end
@@ -34,8 +34,8 @@ module FFMPEG
       rescue => e
         p e.message
       ensure
-        File.unlink *Dir.glob(File.join(stream_dir, '*'))
-        Dir.rmdir stream_dir
+#        File.unlink *Dir.glob(File.join(stream_dir, '*'))
+#        Dir.rmdir stream_dir
       end
     end
   end
