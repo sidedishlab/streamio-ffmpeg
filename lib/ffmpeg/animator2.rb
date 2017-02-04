@@ -34,8 +34,8 @@ module FFMPEG
       rescue => e
         p e.message
       ensure
-#        File.unlink *Dir.glob(File.join(stream_dir, '*'))
-#        Dir.rmdir stream_dir
+        File.unlink *Dir.glob(File.join(stream_dir, '*'))
+        Dir.rmdir stream_dir
       end
     end
   end
