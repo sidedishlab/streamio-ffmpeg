@@ -12,7 +12,7 @@ you can get the FFMPEG from
 gem 'streamio-ffmpeg', github: 'sidedishlab/streamio-ffmpeg'
 ```
 
-## Animation GIF
+## Animation
 
 initialize
 
@@ -43,15 +43,22 @@ movie.animate("path/to/movie.gif", options, animate_options)
 use palette
 
 ```ruby
-movie.animate(output, options, animate_options, true)
+movie.animate("path/to/movie.gif", options, animate_options, true)
 ```
 
 if defined rmagick then make high quality animation.
 
+### GIF
+
 ```ruby
-movie.animate2(output, options, animate_options)
+movie.animate2("path/to/movie.gif", options, animate_options)
 ```
 
+### JPEG (sprite)
+
+```ruby
+movie.animate2("path/to/movie.jpg", options, animate_options)
+```
 
 ## Segment for Http Live Streaming(HLS)
 

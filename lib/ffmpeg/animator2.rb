@@ -22,15 +22,17 @@ module FFMPEG
         # convert *.png アニメ.gif
         output = Magick::ImageList.new
         Dir.glob(File.join(stream_dir, '*')).sort.each do |image|
-          # output.push Magick::Image.read(image).first
           output.concat Magick::ImageList.new(image)
         end
 
-        binding.pry
-
-        output.delay = (20 - transcoder_options[:fps]).abs if transcoder_options && transcoder_options[:fps]
-        output.write @output_file
-        
+        # gifの場合
+        if File.extname(@output_file) == '.gif'
+          output.delay = (20 - transcoder_options[:fps]).abs if transcoder_options && transcoder_options[:fps]
+          output.write @output_file
+        # gif以外の場合はspriteシート
+        else
+          output.append(true).write @output_file
+        end
       rescue => e
         p e.message
       ensure
